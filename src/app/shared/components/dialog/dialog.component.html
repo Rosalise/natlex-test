@@ -1,0 +1,27 @@
+<h2 mat-dialog-title>Chart settings</h2>
+<mat-dialog-content [formGroup]="form" >
+  <p>Chart title</p>
+  <mat-form-field>
+    <mat-label>Chart name</mat-label>
+    <input matInput formControlName="chartTitle">
+  </mat-form-field>
+
+  <p>Chart type</p>
+  <select formControlName="chartType">
+    <option value="line">Line</option>
+    <option value="bar">Bar</option>
+    <option value="spline">Spline</option>
+  </select>
+
+  <p>Chart color</p>
+  <select formControlName="chartColor">
+    <option value="green">Green</option>
+    <option value="red">Red</option>
+    <option value="blue">Blue</option>
+  </select>
+  
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button mat-button [mat-dialog-close]="data" (click)="saveChart()" cdkFocusInitial>Save</button>
+</mat-dialog-actions>

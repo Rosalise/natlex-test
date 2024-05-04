@@ -1,3 +1,4 @@
 import { createFeatureSelector } from "@ngrx/store";
+import { ChartInterface } from "../../../types/chart.interface";
 
-export const selectCharts = createFeatureSelector<ReadonlyArray<Highcharts.Options>>('charts');
+export const selectCharts = createFeatureSelector<ReadonlyArray<ChartInterface>>('charts');

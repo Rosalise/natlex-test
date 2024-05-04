@@ -2,7 +2,6 @@
 import {inject} from '@angular/core'
 import {Actions, createEffect, ofType} from '@ngrx/effects'
 import {catchError, map, of, switchMap} from 'rxjs'
-import {chartsActions} from './actions'
 import { ChartService } from '../../../services/chart.service'
 
 // export const getFeedEffect = createEffect(

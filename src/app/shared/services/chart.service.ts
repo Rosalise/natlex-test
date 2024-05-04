@@ -1,5 +1,7 @@
 import { Injectable } from "@angular/core";
+import { Router } from "@angular/router";
 import { Observable } from "rxjs";
+import { ChartDialogData } from "../types/chartDialogData.interface";
 
 @Injectable({
     providedIn: 'root',
@@ -7,7 +9,9 @@ import { Observable } from "rxjs";
 export class ChartService {
 
     chartOptionsArray: Highcharts.Options[] = [];
+    counter = 0;
 
+    constructor(private router: Router) {}
     generateRandomDOB() : number {
         const randomDate = this.getRandomDate(new Date('2023-01-01T01:57:45.271Z'), new Date('2024-01-05T01:57:45.271Z'));
         return randomDate.getTime()
@@ -34,15 +38,15 @@ export class ChartService {
         return res;
     }
 
-    createNewChart() : Highcharts.Options {
-        let chartData = this.getRandomData(20);
+    createNewChart(chartType: string, chartTitle: string, chartColor: string, data: number[][] | null) : Highcharts.Options {
+        const chartData = data === null ? this.getRandomData(20) : data;
     
         let chartOptions: Highcharts.Options = {
           chart: {
-            type: 'line',
+            type: chartType,
           },
           title: {
-            text: 'My Chart',
+            text: chartTitle,
           },
           xAxis: {
             type: 'datetime',
@@ -56,12 +60,14 @@ export class ChartService {
             {
               data: chartData,
               type: 'line',
+              color: chartColor
             },
           ],
         };
         
+        this.counter += 1;
+
         return chartOptions
-        //this.chartOptionsArray.push(chartOptions);
       }
 
 }

@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { Store } from '@ngrx/store';
 
 @Component({
@@ -11,6 +11,5 @@ import { Store } from '@ngrx/store';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
-
 
 }
