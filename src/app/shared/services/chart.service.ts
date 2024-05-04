@@ -13,7 +13,7 @@ export class ChartService {
 
     constructor(private router: Router) {}
     generateRandomDOB() : number {
-        const randomDate = this.getRandomDate(new Date('2023-01-01T01:57:45.271Z'), new Date('2024-01-05T01:57:45.271Z'));
+        const randomDate = this.getRandomDate(new Date('2023-01-01T01:57:45.271Z'), new Date('2024-05-05T01:57:45.271Z'));
         return randomDate.getTime()
     }
     

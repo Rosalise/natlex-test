@@ -1,20 +1,21 @@
 <h1>View</h1> 
 <div>
 <section class="filter-buttons">
-    <button mat-raised-button color="basic">This week</button>
-    <button mat-raised-button color="basic">This month</button>
-    <button mat-raised-button color="basic">This year</button>
+    <button mat-raised-button color="basic" (click)="setDateRange(week)">This week</button>
+    <button mat-raised-button color="basic" (click)="setDateRange(month)">This month</button>
+    <button mat-raised-button color="basic" (click)="setDateRange(year)">This year</button>
     <button mat-raised-button class="own-date-btn" color="basic" (click)="openDatepicker()"> Choose date</button>
     <article class="datepicker" *ngIf="calendar === true">
         <mat-form-field>
             <mat-label>Enter a date range</mat-label>
-            <mat-date-range-input [rangePicker]="picker">
-              <input matStartDate placeholder="Start date">
-              <input matEndDate placeholder="End date">
+            <mat-date-range-input [formGroup]="dateRange"  [rangePicker]="picker" (click) = setDateRange(datepicker) >
+              <input matStartDate placeholder="Start date" formControlName="start">
+              <input matEndDate placeholder="End date" formControlName="end">
             </mat-date-range-input>
             <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
             <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-date-range-picker #picker></mat-date-range-picker>
+            <mat-date-range-picker #picker ></mat-date-range-picker>
+            <button (click) = setDateRange(datepicker)>set the date</button>
           </mat-form-field>
     </article>
 </section>
