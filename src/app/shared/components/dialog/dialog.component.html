@@ -6,22 +6,27 @@
     <input matInput formControlName="chartTitle">
   </mat-form-field>
 
-  <p>Chart type</p>
-  <select formControlName="chartType">
-    <option value="line">Line</option>
-    <option value="bar">Bar</option>
-    <option value="spline">Spline</option>
-  </select>
+  <mat-form-field>
+    <mat-label>Chart type</mat-label>
+    <mat-select formControlName="chartType">
+        <mat-option value="line">Line</mat-option>
+        <mat-option value="bar">Bar</mat-option>
+        <mat-option value="spline">Spline</mat-option>
+        <mat-option value="area">Area</mat-option>
+    </mat-select>
+  </mat-form-field>
 
-  <p>Chart color</p>
-  <select formControlName="chartColor">
-    <option value="green">Green</option>
-    <option value="red">Red</option>
-    <option value="blue">Blue</option>
-  </select>
+  <mat-form-field>
+    <mat-label>Chart color</mat-label>
+    <mat-select formControlName="chartColor">
+        <mat-option value="green">Green</mat-option>
+        <mat-option value="red">Red</mat-option>
+        <mat-option value="blue">Blue</mat-option>
+    </mat-select>
+  </mat-form-field>
   
 </mat-dialog-content>
 <mat-dialog-actions>
-  <button mat-button (click)="onCancel()">Cancel</button>
-  <button mat-button [mat-dialog-close]="data" (click)="saveChart()" cdkFocusInitial>Save</button>
+  <button mat-button color="warn" (click)="onCancel()">Cancel</button>
+  <button mat-button color="primary" [mat-dialog-close]="data" (click)="saveChart()" cdkFocusInitial>Save</button>
 </mat-dialog-actions>

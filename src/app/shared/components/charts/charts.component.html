@@ -1,4 +1,4 @@
-<h1> Charts</h1>
+<div class="container">
 <button mat-raised-button color="primary" (click)="openDialog()" *ngIf="this.router.url === '/settings'">Create new chart</button>
 
 <div *ngFor="let options of this.chartOptionsArray; let i = index">
@@ -11,7 +11,8 @@
     style="width: 100%; height: 400px; display: block;"
     ></highcharts-chart>
     <section class="buttons" *ngIf="this.router.url === '/settings'">
-        <button mat-button color="accent" (click)="editChart(i)">Edit chart</button>
+        <button mat-button color="primary" (click)="editChart(i)">Edit chart</button>
         <button mat-button color="warn" (click)="deleteChart(i)">Delete chart</button>
     </section>
+</div>
 </div>

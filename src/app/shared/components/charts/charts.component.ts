@@ -43,6 +43,10 @@ export class ChartsComponent {
     this.chartInterfaceArray$.subscribe((values) => this.updateCharts(values));
   }
 
+  openDialog() {
+    const dialogRef = this.dialog.open(DialogComponent);
+  }
+
   updateCharts(chartParams: readonly ChartInterface[]) {
     this.chartOptionsArray = chartParams.map((param) => {
       const newChartObject = this.chartService.createNewChart(
@@ -55,10 +59,6 @@ export class ChartsComponent {
     });
 
     this.localChartInterfaceArray = chartParams;
-  }
-
-  openDialog() {
-    const dialogRef = this.dialog.open(DialogComponent);
   }
 
   editChart(chartIndex: number) {
@@ -76,8 +76,7 @@ export class ChartsComponent {
   }
 
   deleteChart(chartIndex: number) {
-    console.log('delete!');
     this.store.dispatch(ChartsActions.deleteChart({ index: chartIndex }));
-    // console.log(chartData)
+    this.chartService.reduceTotalNumber()
   }
 }

@@ -6,7 +6,13 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ChartsComponent } from '../../shared/components/charts/charts.component';
 import Highcharts from 'highcharts';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
+import { ChartService } from '../../shared/services/chart.service';
 
 @Component({
   selector: 'app-view',
@@ -16,13 +22,17 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angul
     MatFormFieldModule,
     MatDatepickerModule,
     CommonModule,
-    ChartsComponent, FormsModule, ReactiveFormsModule
+    ChartsComponent,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [provideNativeDateAdapter()],
   templateUrl: './view.component.html',
   styleUrl: './view.component.css',
 })
 export class ViewComponent {
+  showDateFilter = false;
+  isLoading = true;
   calendar: boolean = false;
   week: string = 'week';
   month: string = 'month';
@@ -32,8 +42,9 @@ export class ViewComponent {
   dateRange = new FormGroup({
     start: new FormControl<Date | null>(null),
     end: new FormControl<Date | null>(null),
-  })
+  });
 
+  constructor(private chartService: ChartService) {}
 
   openDatepicker() {
     this.calendar = !this.calendar;
@@ -57,16 +68,21 @@ export class ViewComponent {
         maxDate = Date.now();
         break;
       case 'datepicker':
-        if(this.dateRange.value.start !== null && this.dateRange.value.start !== undefined) {
-          minDate = this.dateRange.value.start.getTime()
+        if (
+          this.dateRange.value.start !== null &&
+          this.dateRange.value.start !== undefined
+        ) {
+          minDate = this.dateRange.value.start.getTime();
         }
 
-        if(this.dateRange.value.end !== null && this.dateRange.value.end !== undefined) {
-          maxDate = this.dateRange.value.end.getTime()
+        if (
+          this.dateRange.value.end !== null &&
+          this.dateRange.value.end !== undefined
+        ) {
+          maxDate = this.dateRange.value.end.getTime();
         }
-      
     }
-  
+
     Highcharts.charts.forEach((chart) => {
       if (chart !== undefined) {
         chart?.xAxis[0].update({
@@ -75,5 +91,9 @@ export class ViewComponent {
         });
       }
     });
+  }
+
+  checkShowDate() : boolean { 
+    return this.chartService.currentCount > 0;
   }
 }

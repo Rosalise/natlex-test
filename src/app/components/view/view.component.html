@@ -1,6 +1,5 @@
-<h1>View</h1> 
-<div>
-<section class="filter-buttons">
+<div class="container">
+<section class="filter-buttons" *ngIf="this.checkShowDate()">
     <button mat-raised-button color="basic" (click)="setDateRange(week)">This week</button>
     <button mat-raised-button color="basic" (click)="setDateRange(month)">This month</button>
     <button mat-raised-button color="basic" (click)="setDateRange(year)">This year</button>

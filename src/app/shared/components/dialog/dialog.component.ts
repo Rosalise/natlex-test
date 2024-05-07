@@ -21,8 +21,8 @@ import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ChartsActions } from '../charts/store/actions';
-import { Title } from '@angular/platform-browser';
 import { ChartInterface } from '../../types/chart.interface';
+import {MatSelectModule} from '@angular/material/select';
 
 @Component({
   selector: 'app-dialog',
@@ -36,6 +36,8 @@ import { ChartInterface } from '../../types/chart.interface';
     MatFormFieldModule,
     MatInputModule,
     ReactiveFormsModule,
+    MatButtonModule,
+    MatSelectModule
   ],
 })
 export class DialogComponent {
@@ -59,8 +61,8 @@ export class DialogComponent {
       let formValue = this.form.getRawValue();
 
       if (formValue.chartId == -1) {
-        console.log('creating a new chart');
         const randomData = this.chartService.getRandomData(20);
+        this.chartService.increaseTotalNumber();
 
         this.store.dispatch(
           ChartsActions.addChart({
@@ -74,7 +76,6 @@ export class DialogComponent {
           })
         );
       } else {
-        console.log('saving edits...');
         const chartData: ChartInterface = {
           id: formValue.chartId,
           title: formValue.chartTitle,

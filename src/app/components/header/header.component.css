@@ -1,5 +1,5 @@
 .navbar {
-    background-color: var(--main-color);
+    background-color: var(--dark-blue);
     padding: 1rem;
     display: flex;
     flex-direction: row;
@@ -9,10 +9,20 @@
     gap: 1rem;
 }
 
+.link {
+    font-size: large;
+    text-decoration: none;
+    color: white;
+}
+
+.active {
+    color: var(--light-blue);
+}
 
 @media only screen and (max-width: 427px) {
     .navbar {
-        width: 110vw;
+        width: 100vw;
         flex-direction: column;
+        align-content: flex-start;
     }
 }
